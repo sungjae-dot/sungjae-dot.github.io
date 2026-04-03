@@ -4,29 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>about — oseo</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #ffffff;
+      --border:     #d8d8d8;
+      --black:      #111111;
+      --label-main: #777777;
+      --nav-h:      48px;
+      --max:        960px;
+    }
+
+    html { font-size: 15px; }
+
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: 'Pretendard', -apple-system, 'Helvetica Neue', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: var(--bg);
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 24px;
+    }
+    .topbar-inner {
+      max-width: var(--max); width: 100%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .site-name {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 13px; font-weight: 500;
+      color: var(--black); text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .site-name:hover { opacity: 0.4; }
+    .nav-link {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 12px; font-weight: 300;
+      color: var(--label-main); text-decoration: none;
+    }
+    .nav-link:hover { color: var(--black); }
+
+    .page {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 24px;
+      padding-top: calc(var(--nav-h) + 48px);
+      padding-bottom: 80px;
+    }
+
+    .about-body { max-width: 520px; }
+    .about-body p {
+      font-size: 15px; line-height: 1.85;
+      color: #2a2a2a; margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
+
+  <nav class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="site-name">oseo</a>
+      <a href="about.html" class="nav-link">about</a>
+    </div>
+  </nav>
+
   <div class="page">
-    <header>
-      <a href="../index.html" class="site-name">oseo</a>
-      <nav>
-        <a href="about.html">about</a>
-      </nav>
-    </header>
-
-    <main class="about-body">
-      <p>
-        여기에 자기소개를 써주세요.
-      </p>
-      <p>
-        어떤 것들을 쓰는 블로그인지, 어떤 사람인지 간단하게 적어두면 좋아요.
-      </p>
-    </main>
-
-    <footer>
-      <p>oseo — sungjae-dot.github.io</p>
-    </footer>
+    <div class="about-body">
+      <p>여기에 자기소개를 써주세요.</p>
+      <p>어떤 것들을 쓰는 블로그인지, 어떤 사람인지 간단하게 적어두면 좋아요.</p>
+    </div>
   </div>
+
 </body>
 </html>
