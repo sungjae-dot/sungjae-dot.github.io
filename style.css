@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #111;
+  --gray: #888;
+  --light: #e8e8e8;
+  --bg: #f9f9f7;
+  --max-width: 680px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--black);
+  font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  padding: 0 24px;
+}
+
+/* ─── Layout ─── */
+
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+
+header {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--light);
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  color: var(--black);
+}
+
+.site-name:hover {
+  opacity: 0.5;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--gray);
+  text-decoration: none;
+  text-transform: lowercase;
+}
+
+nav a:hover {
+  color: var(--black);
+}
+
+/* ─── Post list (index) ─── */
+
+.post-list {
+  list-style: none;
+  margin-top: 0;
+}
+
+.post-list li {
+  border-bottom: 1px solid var(--light);
+}
+
+.post-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 20px 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-list a:hover .post-title {
+  opacity: 0.4;
+}
+
+.post-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.post-title {
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s ease;
+}
+
+/* ─── Post page ─── */
+
+.post-header {
+  padding: 64px 0 40px;
+  border-bottom: 1px solid var(--light);
+}
+
+.post-header time {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.post-header h1 {
+  font-size: 22px;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.post-body {
+  padding: 40px 0 80px;
+}
+
+.post-body p {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  color: #333;
+}
+
+.post-body h2 {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 48px 0 16px;
+  color: var(--gray);
+}
+
+.post-body a {
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.post-body a:hover {
+  opacity: 0.5;
+}
+
+.post-body blockquote {
+  border-left: 1px solid var(--light);
+  padding-left: 20px;
+  margin: 32px 0;
+  color: var(--gray);
+  font-style: italic;
+}
+
+/* ─── About page ─── */
+
+.about-body {
+  padding: 48px 0 80px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+}
+
+.about-body p {
+  margin-bottom: 24px;
+}
+
+/* ─── Footer ─── */
+
+footer {
+  padding: 32px 0 48px;
+  border-top: 1px solid var(--light);
+  margin-top: auto;
+}
+
+footer p {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+}
