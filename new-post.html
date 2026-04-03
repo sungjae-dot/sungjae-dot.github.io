@@ -10,202 +10,169 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #ffffff;
+      background: #fff;
       color: #111;
       font-family: 'Pretendard', -apple-system, sans-serif;
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
     }
 
-    .wrap {
-      display: grid;
+    /* ── 폴더 선택 화면 ── */
+    .setup-screen {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+    .setup-screen h1 {
+      font-size: 18px; font-weight: 400;
+    }
+    .setup-screen p {
+      font-size: 13px; color: #888; line-height: 1.7;
+      max-width: 340px;
+    }
+
+    /* ── 메인 화면 ── */
+    .main-screen {
+      display: none;
       grid-template-columns: 1fr 1fr;
       min-height: 100vh;
     }
 
-    /* ── 왼쪽: 입력 폼 ── */
+    /* ── 에디터 ── */
     .editor {
-      padding: 48px 40px;
-      border-right: 1px solid #e8e8e8;
+      padding: 40px;
+      border-right: 1px solid #eee;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
+      overflow-y: auto;
     }
-
+    .editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     .editor-title {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: #aaa;
-      margin-bottom: 4px;
+    }
+    .folder-badge {
+      font-size: 11px; color: #4CAF50;
+      background: #f0faf0; border: 1px solid #c8e8c8;
+      border-radius: 20px; padding: 3px 10px;
     }
 
     label {
       display: block;
-      font-size: 11px;
-      font-weight: 500;
-      color: #888;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+      font-size: 10px; font-weight: 500;
+      color: #999; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 6px;
     }
-
-    input[type="text"],
-    input[type="date"],
-    select,
-    textarea {
+    input[type="text"], input[type="date"], select, textarea {
       width: 100%;
-      background: #f8f8f8;
-      border: 1px solid #e8e8e8;
-      border-radius: 4px;
-      padding: 10px 12px;
+      background: #f8f8f8; border: 1px solid #eee;
+      border-radius: 4px; padding: 10px 12px;
       font-family: 'Pretendard', sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      color: #111;
-      outline: none;
-      transition: border-color 0.15s;
+      font-size: 14px; font-weight: 300; color: #111;
+      outline: none; transition: border-color 0.15s;
     }
     input:focus, select:focus, textarea:focus {
-      border-color: #bbb;
-      background: #fff;
+      border-color: #ccc; background: #fff;
     }
-
-    textarea {
-      resize: vertical;
-      min-height: 280px;
-      line-height: 1.7;
-    }
+    textarea { resize: vertical; min-height: 260px; line-height: 1.7; }
 
     .field { display: flex; flex-direction: column; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .image-note {
-      font-size: 11px;
-      color: #bbb;
-      margin-top: 6px;
-      line-height: 1.5;
+    .img-note { font-size: 11px; color: #bbb; margin-top: 6px; line-height: 1.6; }
+    .img-note code {
+      background: #f0f0f0; border-radius: 3px;
+      padding: 1px 5px; font-size: 11px;
     }
 
     /* ── 버튼 ── */
-    .btn-wrap {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
     .btn {
-      flex: 1;
-      padding: 12px;
-      border: none;
-      border-radius: 4px;
+      padding: 12px 20px; border: none; border-radius: 4px;
       font-family: 'Pretendard', sans-serif;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.15s;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer; transition: opacity 0.15s;
     }
     .btn:hover { opacity: 0.75; }
-
-    .btn-primary {
-      background: #111;
-      color: #fff;
+    .btn-primary { background: #111; color: #fff; width: 100%; }
+    .btn-outline {
+      background: #fff; color: #555;
+      border: 1px solid #ddd;
     }
-    .btn-secondary {
-      background: #f0f0f0;
-      color: #555;
+    .btn-folder {
+      background: #111; color: #fff;
+      padding: 14px 28px; font-size: 14px;
     }
 
-    /* ── 오른쪽: 미리보기 ── */
+    /* ── 토스트 ── */
+    .toast {
+      display: none;
+      background: #f0faf0; border: 1px solid #c8e8c8;
+      border-radius: 6px; padding: 14px 18px;
+      font-size: 13px; line-height: 1.7; color: #2a6a2a;
+    }
+    .toast strong { font-weight: 500; }
+
+    /* ── 미리보기 ── */
     .preview-wrap {
-      padding: 48px 40px;
+      padding: 40px;
       overflow-y: auto;
     }
-
     .preview-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #aaa;
-      margin-bottom: 32px;
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: #aaa; margin-bottom: 32px;
     }
-
     .preview-eyebrow {
-      font-size: 11px;
-      font-weight: 300;
-      color: #999;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 10px;
+      font-size: 11px; font-weight: 300; color: #999;
+      margin-bottom: 20px; display: flex; gap: 10px;
     }
-
     #preview-thumb {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-      display: none;
-      margin-bottom: 32px;
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover; display: none; margin-bottom: 32px;
     }
-
     #preview-title {
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
-      margin-bottom: 32px;
-      color: #111;
+      font-size: 22px; font-weight: 400;
+      letter-spacing: -0.02em; line-height: 1.3;
+      margin-bottom: 32px; color: #111;
     }
-
-    #preview-body {
-      font-size: 15px;
-      line-height: 1.85;
-      color: #2a2a2a;
-    }
-
-    #preview-body p {
-      margin-bottom: 20px;
-    }
-
-    /* ── 완료 메시지 ── */
-    .done-msg {
-      display: none;
-      background: #f0faf0;
-      border: 1px solid #c8e8c8;
-      border-radius: 6px;
-      padding: 16px 20px;
-      font-size: 13px;
-      line-height: 1.7;
-      color: #2a6a2a;
-    }
-    .done-msg strong { font-weight: 500; }
-    .done-msg code {
-      background: #dff0df;
-      border-radius: 3px;
-      padding: 1px 5px;
-      font-size: 12px;
-    }
+    #preview-body { font-size: 15px; line-height: 1.85; color: #2a2a2a; }
+    #preview-body p { margin-bottom: 20px; }
   </style>
 </head>
 <body>
 
-<div class="wrap">
+<!-- ── 폴더 선택 화면 ── -->
+<div class="setup-screen" id="setup-screen">
+  <h1>oseo 블로그 폴더를 선택해주세요</h1>
+  <p>처음 한 번만 선택하면 돼요.<br>
+     <code style="background:#f0f0f0;padding:2px 6px;border-radius:3px;font-size:12px;">Desktop/oseo</code> 폴더를 선택하세요.</p>
+  <button class="btn btn-folder" onclick="selectFolder()">📁 폴더 선택</button>
+  <p style="font-size:11px;color:#ccc;">Chrome 또는 Edge 브라우저에서 열어주세요</p>
+</div>
 
-  <!-- ── 왼쪽: 입력 폼 ── -->
+<!-- ── 메인 화면 ── -->
+<div class="main-screen" id="main-screen">
+
   <div class="editor">
-    <div>
-      <p class="editor-title">oseo — 새 글 쓰기</p>
+    <div class="editor-header">
+      <span class="editor-title">oseo — 새 글 쓰기</span>
+      <span class="folder-badge" id="folder-badge">✓ 연결됨</span>
     </div>
 
     <div class="field">
       <label>제목</label>
-      <input type="text" id="inp-title" placeholder="글 제목을 써주세요" oninput="updatePreview()">
+      <input type="text" id="inp-title" placeholder="글 제목" oninput="updatePreview()">
     </div>
 
     <div class="row">
@@ -227,11 +194,8 @@
 
     <div class="field">
       <label>대표 사진 (선택)</label>
-      <input type="file" id="inp-image" accept="image/*" onchange="updateImage()">
-      <p class="image-note">
-        선택한 사진은 <code>posts/images/</code> 폴더에 직접 복사해줘야 해요.<br>
-        파일명은 글 제목과 동일하게 맞춰주세요.
-      </p>
+      <input type="file" id="inp-imgfile" accept="image/*" onchange="updateImagePreview()">
+      <p class="img-note">사진을 선택하면 저장 시 자동으로 <code>posts/images/</code>에 복사돼요.</p>
     </div>
 
     <div class="field">
@@ -241,31 +205,24 @@
         oninput="updatePreview()"></textarea>
     </div>
 
-    <div class="done-msg" id="done-msg">
-      ✅ <strong>파일이 다운로드됐어요!</strong><br><br>
-      이제 두 가지만 하면 돼요:<br>
-      1. 다운로드된 파일을 <code>Desktop/oseo/posts/</code> 폴더에 넣기<br>
-      2. <code>index.html</code>에 카드 추가하기 (아래 코드를 복사해서 붙여넣기)
-      <br><br>
-      <div id="card-snippet" style="background:#e8f5e8;border-radius:4px;padding:12px;font-family:monospace;font-size:11px;white-space:pre;overflow-x:auto;color:#1a4a1a;"></div>
+    <div class="toast" id="toast">
+      ✅ <strong>저장 완료!</strong><br>
+      GitHub Desktop에서 Commit → Push 하면 블로그에 올라가요.
     </div>
 
-    <div class="btn-wrap">
-      <button class="btn btn-secondary" onclick="resetForm()">초기화</button>
-      <button class="btn btn-primary" onclick="download()">파일 다운로드</button>
+    <div style="display:flex;gap:10px;">
+      <button class="btn btn-outline" onclick="selectFolder()">폴더 재선택</button>
+      <button class="btn btn-primary" onclick="savePost()">저장하기</button>
     </div>
   </div>
 
-  <!-- ── 오른쪽: 미리보기 ── -->
   <div class="preview-wrap">
     <p class="preview-label">미리보기</p>
-
     <div class="preview-eyebrow">
       <span id="prev-date">2026.04.03</span>
       <span>—</span>
       <span id="prev-cat">writing</span>
     </div>
-
     <img id="preview-thumb" src="" alt="">
     <div id="preview-title">제목이 여기에 표시돼요</div>
     <div id="preview-body"><p>본문이 여기에 표시돼요.</p></div>
@@ -274,13 +231,13 @@
 </div>
 
 <script>
-  // 오늘 날짜 기본값
+  let rootHandle = null;
+
   const today = new Date().toISOString().slice(0, 10);
   document.getElementById('inp-date').value = today;
 
-  function getDateDisplay(raw) {
-    if (!raw) return '';
-    return raw.replace(/-/g, '.');
+  function dateDisplay(raw) {
+    return raw ? raw.replace(/-/g, '.') : '';
   }
 
   function slugify(str) {
@@ -288,28 +245,12 @@
   }
 
   function textToHtml(text) {
-    return text
-      .split(/\n\s*\n/)
-      .map(p => p.trim())
-      .filter(p => p.length > 0)
-      .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
-      .join('\n        ');
+    return text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+      .map(p => `        <p>${p.replace(/\n/g, '<br>')}</p>`).join('\n');
   }
 
-  function updatePreview() {
-    const title = document.getElementById('inp-title').value || '제목이 여기에 표시돼요';
-    const date  = getDateDisplay(document.getElementById('inp-date').value);
-    const cat   = document.getElementById('inp-cat').value;
-    const body  = document.getElementById('inp-body').value || '본문이 여기에 표시돼요.';
-
-    document.getElementById('preview-title').textContent = title;
-    document.getElementById('prev-date').textContent = date || '날짜';
-    document.getElementById('prev-cat').textContent = cat;
-    document.getElementById('preview-body').innerHTML = textToHtml(body);
-  }
-
-  function updateImage() {
-    const file = document.getElementById('inp-image').files[0];
+  function updateImagePreview() {
+    const file  = document.getElementById('inp-imgfile').files[0];
     const thumb = document.getElementById('preview-thumb');
     if (file) {
       thumb.src = URL.createObjectURL(file);
@@ -319,44 +260,50 @@
     }
   }
 
-  function download() {
-    const title    = document.getElementById('inp-title').value.trim();
-    const dateRaw  = document.getElementById('inp-date').value;
-    const cat      = document.getElementById('inp-cat').value;
-    const body     = document.getElementById('inp-body').value.trim();
-    const imgFile  = document.getElementById('inp-image').files[0];
+  function updatePreview() {
+    const title = document.getElementById('inp-title').value || '제목이 여기에 표시돼요';
+    const date  = dateDisplay(document.getElementById('inp-date').value);
+    const cat   = document.getElementById('inp-cat').value;
+    const body  = document.getElementById('inp-body').value || '본문이 여기에 표시돼요.';
+
+    document.getElementById('preview-title').textContent = title;
+    document.getElementById('prev-date').textContent = date || '날짜';
+    document.getElementById('prev-cat').textContent = cat;
+    document.getElementById('preview-body').innerHTML = textToHtml(body);
+  }
+
+  async function selectFolder() {
+    try {
+      rootHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+      document.getElementById('setup-screen').style.display = 'none';
+      document.getElementById('main-screen').style.display = 'grid';
+      document.getElementById('folder-badge').textContent = `✓ ${rootHandle.name}`;
+    } catch (e) {
+      if (e.name !== 'AbortError') alert('폴더 선택에 실패했어요. 다시 시도해주세요.');
+    }
+  }
+
+  async function savePost() {
+    if (!rootHandle) { alert('폴더를 먼저 선택해주세요.'); return; }
+
+    const title   = document.getElementById('inp-title').value.trim();
+    const dateRaw = document.getElementById('inp-date').value;
+    const cat     = document.getElementById('inp-cat').value;
+    const body    = document.getElementById('inp-body').value.trim();
+    const imgFile = document.getElementById('inp-imgfile').files[0];
+    const imgname = imgFile ? imgFile.name : '';
 
     if (!title) { alert('제목을 입력해주세요.'); return; }
     if (!body)  { alert('본문을 입력해주세요.'); return; }
 
-    const dateDisp = getDateDisplay(dateRaw);
+    const dateDisp = dateDisplay(dateRaw);
     const slug     = slugify(title);
-    const imgTag   = imgFile
-      ? `\n      <img class="post-thumb" src="images/${imgFile.name}" alt="">\n`
-      : '\n      <!-- 사진 있을 때만: <img class="post-thumb" src="images/파일명.jpg" alt=""> -->\n';
+    const imgLine  = imgname
+      ? `\n      <img class="post-thumb" src="images/${imgname}" alt="">\n`
+      : '';
 
-    const hasImage = !!imgFile;
-    const cardSnippet = hasImage
-      ? `<a class="post-card" href="posts/${slug}.html">
-  <div class="card-img">
-    <img src="posts/images/${imgFile.name}" alt="">
-  </div>
-  <div class="card-label">
-    <span class="card-label-title">${title}</span>
-    <span class="card-label-date">${dateDisp}</span>
-  </div>
-</a>`
-      : `<a class="post-card" href="posts/${slug}.html">
-  <div class="card-text">
-    <span class="card-text-inner">${title}</span>
-  </div>
-  <div class="card-label">
-    <span class="card-label-title">${title}</span>
-    <span class="card-label-date">${dateDisp}</span>
-  </div>
-</a>`;
-
-    const html = `<!DOCTYPE html>
+    // ── 글 HTML 생성 ──
+    const postHtml = `<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -364,87 +311,118 @@
   <title>${title} — oseo</title>
   <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #ffffff; --border: #d8d8d8;
-      --black: #111111; --label-main: #777777; --label-sub: #999999; --nav-h: 48px; --max: 960px;
-    }
-
+    :root { --bg:#ffffff; --border:#d8d8d8; --black:#111111; --label-main:#777777; --label-sub:#999999; --nav-h:48px; --max:960px; }
     html { font-size: 15px; }
-    body { background: var(--bg); color: var(--black); font-family: 'Pretendard', -apple-system, 'Helvetica Neue', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; }
-
-    .topbar { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); background: var(--bg); z-index: 100; display: flex; align-items: center; padding: 0 24px; }
-    .topbar-inner { max-width: var(--max); width: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-    .site-name { font-size: 13px; font-weight: 500; color: var(--black); text-decoration: none; letter-spacing: 0.04em; }
-    .site-name:hover { opacity: 0.4; }
-    .nav-link { font-size: 12px; font-weight: 300; color: var(--label-main); text-decoration: none; }
-    .nav-link:hover { color: var(--black); }
-
-    .page { max-width: var(--max); margin: 0 auto; padding: 0 24px; padding-top: calc(var(--nav-h) + 48px); padding-bottom: 80px; }
-    .post-wrap { max-width: 600px; }
-
-    .post-eyebrow { font-size: 11px; font-weight: 300; color: var(--label-sub); margin-bottom: 20px; display: flex; gap: 10px; }
-    .post-thumb { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; margin-bottom: 32px; }
-    h1 { font-size: 24px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 36px; }
-    .post-body p { font-size: 15px; line-height: 1.85; color: #2a2a2a; margin-bottom: 24px; }
-    .post-body h2 { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label-main); margin: 48px 0 16px; }
-    .post-body a { color: var(--black); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    .post-body a:hover { opacity: 0.4; }
-    .post-body img { width: 100%; margin: 16px 0; }
+    body { background:var(--bg); color:var(--black); font-family:'Pretendard',-apple-system,'Helvetica Neue',sans-serif; font-weight:300; -webkit-font-smoothing:antialiased; }
+    .topbar { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:var(--bg); z-index:100; display:flex; align-items:center; padding:0 24px; }
+    .topbar-inner { max-width:var(--max); width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .site-name { font-size:13px; font-weight:500; color:var(--black); text-decoration:none; letter-spacing:0.04em; }
+    .site-name:hover { opacity:0.4; }
+    .nav-link { font-size:12px; font-weight:300; color:var(--label-main); text-decoration:none; }
+    .nav-link:hover { color:var(--black); }
+    .page { max-width:var(--max); margin:0 auto; padding:0 24px; padding-top:calc(var(--nav-h) + 48px); padding-bottom:80px; }
+    .post-wrap { max-width:600px; }
+    .post-eyebrow { font-size:11px; font-weight:300; color:var(--label-sub); margin-bottom:20px; display:flex; gap:10px; }
+    .post-thumb { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:32px; }
+    h1 { font-size:24px; font-weight:400; letter-spacing:-0.02em; line-height:1.3; margin-bottom:36px; }
+    .post-body p { font-size:15px; line-height:1.85; color:#2a2a2a; margin-bottom:24px; }
+    .post-body h2 { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--label-main); margin:48px 0 16px; }
+    .post-body a { color:var(--black); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
+    .post-body a:hover { opacity:0.4; }
+    .post-body img { width:100%; margin:16px 0; }
   </style>
 </head>
 <body>
-
   <nav class="topbar">
     <div class="topbar-inner">
       <a href="../index.html" class="site-name">oseo</a>
       <a href="../about.html" class="nav-link">about</a>
     </div>
   </nav>
-
   <div class="page">
     <article class="post-wrap">
       <div class="post-eyebrow">
         <span>${dateDisp}</span>
         <span>—</span>
         <span>${cat}</span>
-      </div>
-      ${imgTag}
+      </div>${imgLine}
       <h1>${title}</h1>
-
       <div class="post-body">
-        ${textToHtml(body)}
+${textToHtml(body)}
       </div>
     </article>
   </div>
-
 </body>
 </html>`;
 
-    const blob = new Blob([html], { type: 'text/html' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `${slug}.html`;
-    a.click();
+    // ── 카드 HTML 생성 ──
+    const cardHtml = imgname ? `
+      <a class="post-card" href="posts/${slug}.html">
+        <div class="card-img">
+          <img src="posts/images/${imgname}" alt="">
+        </div>
+        <div class="card-label">
+          <span class="card-label-title">${title}</span>
+          <span class="card-label-date">${dateDisp}</span>
+        </div>
+      </a>
+` : `
+      <a class="post-card" href="posts/${slug}.html">
+        <div class="card-text">
+          <span class="card-text-inner">${title}</span>
+        </div>
+        <div class="card-label">
+          <span class="card-label-title">${title}</span>
+          <span class="card-label-date">${dateDisp}</span>
+        </div>
+      </a>
+`;
 
-    // 완료 메시지
-    document.getElementById('card-snippet').textContent = cardSnippet;
-    const msg = document.getElementById('done-msg');
-    msg.style.display = 'block';
-    msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
+    try {
+      const postsDir = await rootHandle.getDirectoryHandle('posts', { create: true });
 
-  function resetForm() {
-    document.getElementById('inp-title').value = '';
-    document.getElementById('inp-date').value = today;
-    document.getElementById('inp-cat').value = 'writing';
-    document.getElementById('inp-body').value = '';
-    document.getElementById('inp-image').value = '';
-    document.getElementById('preview-thumb').style.display = 'none';
-    document.getElementById('done-msg').style.display = 'none';
-    updatePreview();
+      // 1. 사진 파일 저장
+      if (imgFile) {
+        const imagesDir  = await postsDir.getDirectoryHandle('images', { create: true });
+        const imgHandle  = await imagesDir.getFileHandle(imgFile.name, { create: true });
+        const imgWritable = await imgHandle.createWritable();
+        await imgWritable.write(await imgFile.arrayBuffer());
+        await imgWritable.close();
+      }
+
+      // 2. posts/slug.html 저장
+      const postFile = await postsDir.getFileHandle(`${slug}.html`, { create: true });
+      const postWritable = await postFile.createWritable();
+      await postWritable.write(postHtml);
+      await postWritable.close();
+
+      // 2. index.html 읽고 카드 삽입
+      const indexFile   = await rootHandle.getFileHandle('index.html');
+      const indexRaw    = await (await indexFile.getFile()).text();
+      const marker      = '<div class="post-grid">';
+      const updatedIndex = indexRaw.replace(marker, marker + cardHtml);
+      const indexWritable = await indexFile.createWritable();
+      await indexWritable.write(updatedIndex);
+      await indexWritable.close();
+
+      // 완료 토스트
+      const toast = document.getElementById('toast');
+      toast.style.display = 'block';
+      toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // 폼 초기화
+      document.getElementById('inp-title').value   = '';
+      document.getElementById('inp-date').value    = today;
+      document.getElementById('inp-cat').value     = 'writing';
+      document.getElementById('inp-body').value    = '';
+      document.getElementById('inp-imgfile').value = '';
+      document.getElementById('preview-thumb').style.display = 'none';
+      updatePreview();
+
+    } catch (e) {
+      alert('저장 중 오류가 났어요: ' + e.message);
+    }
   }
 
   updatePreview();
