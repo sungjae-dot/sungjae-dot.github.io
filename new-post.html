@@ -10,149 +10,91 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: #fff;
-      color: #111;
+      background: #fff; color: #111;
       font-family: 'Pretendard', -apple-system, sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
+      font-weight: 300; -webkit-font-smoothing: antialiased;
     }
 
-    /* ── 폴더 선택 화면 ── */
     .setup-screen {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      padding: 40px;
-      text-align: center;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; padding: 40px; text-align: center;
     }
-    .setup-screen h1 {
-      font-size: 18px; font-weight: 400;
-    }
-    .setup-screen p {
-      font-size: 13px; color: #888; line-height: 1.7;
-      max-width: 340px;
-    }
+    .setup-screen h1 { font-size: 18px; font-weight: 400; }
+    .setup-screen p  { font-size: 13px; color: #888; line-height: 1.7; max-width: 340px; }
 
-    /* ── 메인 화면 ── */
-    .main-screen {
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-    }
+    .main-screen { display: none; grid-template-columns: 1fr 1fr; min-height: 100vh; }
 
-    /* ── 에디터 ── */
     .editor {
-      padding: 40px;
-      border-right: 1px solid #eee;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      overflow-y: auto;
+      padding: 40px; border-right: 1px solid #eee;
+      display: flex; flex-direction: column; gap: 20px; overflow-y: auto;
     }
-    .editor-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .editor-title {
-      font-size: 11px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: #aaa;
-    }
-    .folder-badge {
-      font-size: 11px; color: #4CAF50;
-      background: #f0faf0; border: 1px solid #c8e8c8;
-      border-radius: 20px; padding: 3px 10px;
-    }
+    .editor-header { display: flex; align-items: center; justify-content: space-between; }
+    .editor-title  { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; }
+    .folder-badge  { font-size: 11px; color: #4CAF50; background: #f0faf0; border: 1px solid #c8e8c8; border-radius: 20px; padding: 3px 10px; }
 
     label {
-      display: block;
-      font-size: 10px; font-weight: 500;
-      color: #999; letter-spacing: 0.08em;
-      text-transform: uppercase; margin-bottom: 6px;
+      display: block; font-size: 10px; font-weight: 500;
+      color: #999; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px;
     }
     input[type="text"], input[type="date"], select, textarea {
-      width: 100%;
-      background: #f8f8f8; border: 1px solid #eee;
+      width: 100%; background: #f8f8f8; border: 1px solid #eee;
       border-radius: 4px; padding: 10px 12px;
-      font-family: 'Pretendard', sans-serif;
-      font-size: 14px; font-weight: 300; color: #111;
+      font-family: 'Pretendard', sans-serif; font-size: 14px; font-weight: 300; color: #111;
       outline: none; transition: border-color 0.15s;
     }
-    input:focus, select:focus, textarea:focus {
-      border-color: #ccc; background: #fff;
-    }
-    textarea { resize: vertical; min-height: 260px; line-height: 1.7; }
+    input:focus, select:focus, textarea:focus { border-color: #ccc; background: #fff; }
+    textarea { resize: vertical; min-height: 240px; line-height: 1.7; }
 
     .field { display: flex; flex-direction: column; }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
+    .row   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .img-note { font-size: 11px; color: #bbb; margin-top: 6px; line-height: 1.6; }
-    .img-note code {
-      background: #f0f0f0; border-radius: 3px;
-      padding: 1px 5px; font-size: 11px;
-    }
+    .img-note code { background: #f0f0f0; border-radius: 3px; padding: 1px 5px; font-size: 11px; }
 
-    /* ── 버튼 ── */
+    /* ── 본문 사진 삽입 버튼 ── */
+    .body-toolbar {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+    }
+    .btn-insert-img {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 11px; font-weight: 500;
+      background: #f4f4f4; border: 1px solid #e0e0e0;
+      border-radius: 4px; padding: 5px 12px;
+      cursor: pointer; color: #555;
+      transition: background 0.1s;
+    }
+    .btn-insert-img:hover { background: #eaeaea; }
+    .body-hint { font-size: 11px; color: #ccc; }
+
     .btn {
       padding: 12px 20px; border: none; border-radius: 4px;
-      font-family: 'Pretendard', sans-serif;
-      font-size: 13px; font-weight: 500;
+      font-family: 'Pretendard', sans-serif; font-size: 13px; font-weight: 500;
       cursor: pointer; transition: opacity 0.15s;
     }
     .btn:hover { opacity: 0.75; }
-    .btn-primary { background: #111; color: #fff; width: 100%; }
-    .btn-outline {
-      background: #fff; color: #555;
-      border: 1px solid #ddd;
-    }
-    .btn-folder {
-      background: #111; color: #fff;
-      padding: 14px 28px; font-size: 14px;
-    }
+    .btn-primary  { background: #111; color: #fff; width: 100%; }
+    .btn-outline  { background: #fff; color: #555; border: 1px solid #ddd; }
+    .btn-folder   { background: #111; color: #fff; padding: 14px 28px; font-size: 14px; }
 
-    /* ── 토스트 ── */
     .toast {
-      display: none;
-      background: #f0faf0; border: 1px solid #c8e8c8;
-      border-radius: 6px; padding: 14px 18px;
-      font-size: 13px; line-height: 1.7; color: #2a6a2a;
+      display: none; background: #f0faf0; border: 1px solid #c8e8c8;
+      border-radius: 6px; padding: 14px 18px; font-size: 13px; line-height: 1.7; color: #2a6a2a;
     }
     .toast strong { font-weight: 500; }
 
     /* ── 미리보기 ── */
-    .preview-wrap {
-      padding: 40px;
-      overflow-y: auto;
-    }
-    .preview-label {
-      font-size: 10px; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: #aaa; margin-bottom: 32px;
-    }
-    .preview-eyebrow {
-      font-size: 11px; font-weight: 300; color: #999;
-      margin-bottom: 20px; display: flex; gap: 10px;
-    }
-    #preview-thumb {
-      width: 100%; aspect-ratio: 16/9;
-      object-fit: cover; display: none; margin-bottom: 32px;
-    }
-    #preview-title {
-      font-size: 22px; font-weight: 400;
-      letter-spacing: -0.02em; line-height: 1.3;
-      margin-bottom: 32px; color: #111;
-    }
-    #preview-body { font-size: 15px; line-height: 1.85; color: #2a2a2a; }
-    #preview-body p { margin-bottom: 20px; }
+    .preview-wrap  { padding: 40px; overflow-y: auto; }
+    .preview-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; margin-bottom: 32px; }
+    .preview-eyebrow { font-size: 11px; font-weight: 300; color: #999; margin-bottom: 20px; display: flex; gap: 10px; }
+    #preview-thumb { width: 100%; display: none; margin-bottom: 32px; }
+    #preview-title { font-size: 22px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 32px; color: #111; }
+    #preview-body  { font-size: 15px; line-height: 1.85; color: #2a2a2a; }
+    #preview-body p   { margin-bottom: 20px; }
+    #preview-body img { width: 100%; margin: 16px 0; display: block; }
   </style>
 </head>
 <body>
 
-<!-- ── 폴더 선택 화면 ── -->
 <div class="setup-screen" id="setup-screen">
   <h1>oseo 블로그 폴더를 선택해주세요</h1>
   <p>처음 한 번만 선택하면 돼요.<br>
@@ -161,7 +103,6 @@
   <p style="font-size:11px;color:#ccc;">Chrome 또는 Edge 브라우저에서 열어주세요</p>
 </div>
 
-<!-- ── 메인 화면 ── -->
 <div class="main-screen" id="main-screen">
 
   <div class="editor">
@@ -194,16 +135,23 @@
 
     <div class="field">
       <label>대표 사진 (선택)</label>
-      <input type="file" id="inp-imgfile" accept="image/*" onchange="updateImagePreview()">
-      <p class="img-note">사진을 선택하면 저장 시 자동으로 <code>posts/images/</code>에 복사돼요.</p>
+      <input type="file" id="inp-imgfile" accept="image/*" onchange="updateCoverPreview()">
+      <p class="img-note">저장 시 자동으로 <code>posts/images/</code>에 복사돼요.</p>
     </div>
 
     <div class="field">
-      <label>본문</label>
+      <div class="body-toolbar">
+        <label style="margin:0;">본문</label>
+        <button class="btn-insert-img" onclick="insertImage()">＋ 사진 삽입</button>
+        <span class="body-hint">커서 위치에 사진이 들어가요</span>
+      </div>
       <textarea id="inp-body"
-        placeholder="글을 써주세요.&#10;&#10;빈 줄로 구분하면 문단이 나뉘어져요."
+        placeholder="글을 써주세요.&#10;&#10;빈 줄로 구분하면 문단이 나뉘어져요.&#10;&#10;사진을 넣고 싶은 위치에 커서를 두고 위의 '＋ 사진 삽입' 버튼을 눌러요."
         oninput="updatePreview()"></textarea>
     </div>
+
+    <!-- 숨겨진 파일 입력 (본문 사진용) -->
+    <input type="file" id="inp-inline-img" accept="image/*" style="display:none" onchange="onInlineImageSelected()">
 
     <div class="toast" id="toast">
       ✅ <strong>저장 완료!</strong><br>
@@ -231,25 +179,39 @@
 </div>
 
 <script>
-  let rootHandle = null;
+  let rootHandle  = null;
+  // 본문 삽입 사진: { filename -> File }
+  const inlineImgs = new Map();
 
   const today = new Date().toISOString().slice(0, 10);
   document.getElementById('inp-date').value = today;
 
-  function dateDisplay(raw) {
-    return raw ? raw.replace(/-/g, '.') : '';
+  function dateDisplay(raw) { return raw ? raw.replace(/-/g, '.') : ''; }
+  function slugify(str)     { return str.trim().replace(/\s+/g, '-'); }
+
+  // [사진:파일명] 마커를 포함한 본문을 HTML로 변환
+  function textToHtml(text, forPreview = false) {
+    const blocks = text.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean);
+    return blocks.map(block => {
+      // 사진 마커인지 확인
+      const match = block.match(/^\[사진:(.+?)\]$/);
+      if (match) {
+        const fname = match[1];
+        if (forPreview) {
+          const url = inlineImgs.has(fname)
+            ? URL.createObjectURL(inlineImgs.get(fname))
+            : `posts/images/${fname}`;
+          return `        <img src="${url}" alt="" style="width:100%;display:block;margin:16px 0;">`;
+        } else {
+          return `        <img class="post-img" src="images/${fname}" alt="">`;
+        }
+      }
+      return `        <p>${block.replace(/\n/g, '<br>')}</p>`;
+    }).join('\n');
   }
 
-  function slugify(str) {
-    return str.trim().replace(/\s+/g, '-');
-  }
-
-  function textToHtml(text) {
-    return text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
-      .map(p => `        <p>${p.replace(/\n/g, '<br>')}</p>`).join('\n');
-  }
-
-  function updateImagePreview() {
+  // 대표 사진 미리보기
+  function updateCoverPreview() {
     const file  = document.getElementById('inp-imgfile').files[0];
     const thumb = document.getElementById('preview-thumb');
     if (file) {
@@ -260,6 +222,7 @@
     }
   }
 
+  // 본문 미리보기 갱신
   function updatePreview() {
     const title = document.getElementById('inp-title').value || '제목이 여기에 표시돼요';
     const date  = dateDisplay(document.getElementById('inp-date').value);
@@ -267,19 +230,47 @@
     const body  = document.getElementById('inp-body').value || '본문이 여기에 표시돼요.';
 
     document.getElementById('preview-title').textContent = title;
-    document.getElementById('prev-date').textContent = date || '날짜';
-    document.getElementById('prev-cat').textContent = cat;
-    document.getElementById('preview-body').innerHTML = textToHtml(body);
+    document.getElementById('prev-date').textContent     = date || '날짜';
+    document.getElementById('prev-cat').textContent      = cat;
+    document.getElementById('preview-body').innerHTML    = textToHtml(body, true);
+  }
+
+  // "＋ 사진 삽입" 버튼 클릭
+  function insertImage() {
+    document.getElementById('inp-inline-img').click();
+  }
+
+  // 본문 사진 선택 완료
+  function onInlineImageSelected() {
+    const file = document.getElementById('inp-inline-img').files[0];
+    if (!file) return;
+
+    // 파일 등록
+    inlineImgs.set(file.name, file);
+
+    // 커서 위치에 마커 삽입
+    const ta    = document.getElementById('inp-body');
+    const start = ta.selectionStart;
+    const end   = ta.selectionEnd;
+    const val   = ta.value;
+    const marker = `\n\n[사진:${file.name}]\n\n`;
+    ta.value = val.slice(0, start) + marker + val.slice(end);
+    ta.selectionStart = ta.selectionEnd = start + marker.length;
+    ta.focus();
+
+    // 파일 입력 초기화 (같은 파일 재선택 가능하도록)
+    document.getElementById('inp-inline-img').value = '';
+    updatePreview();
   }
 
   async function selectFolder() {
     try {
       rootHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
       document.getElementById('setup-screen').style.display = 'none';
-      document.getElementById('main-screen').style.display = 'grid';
-      document.getElementById('folder-badge').textContent = `✓ ${rootHandle.name}`;
+      document.getElementById('main-screen').style.display  = 'grid';
+      document.getElementById('folder-badge').textContent   = `✓ ${rootHandle.name}`;
     } catch (e) {
-      if (e.name !== 'AbortError') alert('폴더 선택에 실패했어요. 다시 시도해주세요.');
+      if (e.name !== 'AbortError') alert('폴더 선택에 실패했어요.');
     }
   }
 
@@ -290,19 +281,18 @@
     const dateRaw = document.getElementById('inp-date').value;
     const cat     = document.getElementById('inp-cat').value;
     const body    = document.getElementById('inp-body').value.trim();
-    const imgFile = document.getElementById('inp-imgfile').files[0];
-    const imgname = imgFile ? imgFile.name : '';
+    const coverFile = document.getElementById('inp-imgfile').files[0];
+    const coverName = coverFile ? coverFile.name : '';
 
     if (!title) { alert('제목을 입력해주세요.'); return; }
     if (!body)  { alert('본문을 입력해주세요.'); return; }
 
     const dateDisp = dateDisplay(dateRaw);
     const slug     = slugify(title);
-    const imgLine  = imgname
-      ? `\n      <img class="post-thumb" src="images/${imgname}" alt="">\n`
+    const coverLine = coverName
+      ? `\n      <img class="post-thumb" src="images/${coverName}" alt="">\n`
       : '';
 
-    // ── 글 HTML 생성 ──
     const postHtml = `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -324,13 +314,13 @@
     .page { max-width:var(--max); margin:0 auto; padding:0 24px; padding-top:calc(var(--nav-h) + 48px); padding-bottom:80px; }
     .post-wrap { max-width:600px; }
     .post-eyebrow { font-size:11px; font-weight:300; color:var(--label-sub); margin-bottom:20px; display:flex; gap:10px; }
-    .post-thumb { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; margin-bottom:32px; }
+    .post-thumb { width:100%; display:block; margin-bottom:32px; }
     h1 { font-size:24px; font-weight:400; letter-spacing:-0.02em; line-height:1.3; margin-bottom:36px; }
     .post-body p { font-size:15px; line-height:1.85; color:#2a2a2a; margin-bottom:24px; }
     .post-body h2 { font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--label-main); margin:48px 0 16px; }
     .post-body a { color:var(--black); text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; }
     .post-body a:hover { opacity:0.4; }
-    .post-body img { width:100%; margin:16px 0; }
+    .post-img { width:100%; display:block; margin:24px 0; }
   </style>
 </head>
 <body>
@@ -346,21 +336,20 @@
         <span>${dateDisp}</span>
         <span>—</span>
         <span>${cat}</span>
-      </div>${imgLine}
+      </div>${coverLine}
       <h1>${title}</h1>
       <div class="post-body">
-${textToHtml(body)}
+${textToHtml(body, false)}
       </div>
     </article>
   </div>
 </body>
 </html>`;
 
-    // ── 카드 HTML 생성 ──
-    const cardHtml = imgname ? `
+    const cardHtml = coverName ? `
       <a class="post-card" href="posts/${slug}.html">
         <div class="card-img">
-          <img src="posts/images/${imgname}" alt="">
+          <img src="posts/images/${coverName}" alt="">
         </div>
         <div class="card-label">
           <span class="card-label-title">${title}</span>
@@ -380,44 +369,50 @@ ${textToHtml(body)}
 `;
 
     try {
-      const postsDir = await rootHandle.getDirectoryHandle('posts', { create: true });
+      const postsDir  = await rootHandle.getDirectoryHandle('posts', { create: true });
+      const imagesDir = await postsDir.getDirectoryHandle('images', { create: true });
 
-      // 1. 사진 파일 저장
-      if (imgFile) {
-        const imagesDir  = await postsDir.getDirectoryHandle('images', { create: true });
-        const imgHandle  = await imagesDir.getFileHandle(imgFile.name, { create: true });
-        const imgWritable = await imgHandle.createWritable();
-        await imgWritable.write(await imgFile.arrayBuffer());
-        await imgWritable.close();
+      // 1. 대표 사진 저장
+      if (coverFile) {
+        const h = await imagesDir.getFileHandle(coverFile.name, { create: true });
+        const w = await h.createWritable();
+        await w.write(await coverFile.arrayBuffer());
+        await w.close();
       }
 
-      // 2. posts/slug.html 저장
+      // 2. 본문 사진 저장
+      for (const [fname, file] of inlineImgs) {
+        const h = await imagesDir.getFileHandle(fname, { create: true });
+        const w = await h.createWritable();
+        await w.write(await file.arrayBuffer());
+        await w.close();
+      }
+
+      // 3. 글 파일 저장
       const postFile = await postsDir.getFileHandle(`${slug}.html`, { create: true });
-      const postWritable = await postFile.createWritable();
-      await postWritable.write(postHtml);
-      await postWritable.close();
+      const pw = await postFile.createWritable();
+      await pw.write(postHtml);
+      await pw.close();
 
-      // 2. index.html 읽고 카드 삽입
-      const indexFile   = await rootHandle.getFileHandle('index.html');
-      const indexRaw    = await (await indexFile.getFile()).text();
-      const marker      = '<div class="post-grid">';
-      const updatedIndex = indexRaw.replace(marker, marker + cardHtml);
-      const indexWritable = await indexFile.createWritable();
-      await indexWritable.write(updatedIndex);
-      await indexWritable.close();
+      // 4. index.html 카드 삽입
+      const indexFile = await rootHandle.getFileHandle('index.html');
+      const indexRaw  = await (await indexFile.getFile()).text();
+      const iw = await indexFile.createWritable();
+      await iw.write(indexRaw.replace('<div class="post-grid">', '<div class="post-grid">' + cardHtml));
+      await iw.close();
 
-      // 완료 토스트
-      const toast = document.getElementById('toast');
-      toast.style.display = 'block';
-      toast.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // 완료
+      document.getElementById('toast').style.display = 'block';
+      document.getElementById('toast').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      // 폼 초기화
+      // 초기화
       document.getElementById('inp-title').value   = '';
       document.getElementById('inp-date').value    = today;
       document.getElementById('inp-cat').value     = 'writing';
       document.getElementById('inp-body').value    = '';
       document.getElementById('inp-imgfile').value = '';
       document.getElementById('preview-thumb').style.display = 'none';
+      inlineImgs.clear();
       updatePreview();
 
     } catch (e) {
